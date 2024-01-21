@@ -48,6 +48,13 @@ const useStyles = () => {
       fontSize: 16,
       color: '#000',
     },
+    emptyComponent: {
+      flex: 1,
+    },
+    noDataImg: {
+      height: height / 3,
+      width: width - 40,
+    },
   });
 };
 

@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
-import {View, useWindowDimensions, Text, FlatList} from 'react-native';
+import {View, useWindowDimensions, Text, FlatList, Image} from 'react-native';
 import Carousel from 'react-native-snap-carousel';
 import {useDispatch, useSelector} from 'react-redux';
 
@@ -45,7 +45,7 @@ const UpcomingMovieComponent = ({
     <View style={styles.upcomingMovies}>
       {loading ? (
         <MovieCardSkeleton />
-      ) : (
+      ) : movies.length > 0 ? (
         <>
           <Text style={styles.upcomingMovieTxt}>Upcoming Movies</Text>
           <Carousel
@@ -60,8 +60,26 @@ const UpcomingMovieComponent = ({
             decelerationRate={0.9}
           />
         </>
+      ) : (
+        <Image
+          source={require('../../../assets/images/nodata.jpg')}
+          style={{height: 400, width: 400}}
+        />
       )}
       <Text style={styles.movieCardHeaderText}>Trending Movies</Text>
+    </View>
+  );
+};
+
+const NoDataComponent = () => {
+  const styles = useStyles();
+
+  return (
+    <View style={styles.emptyComponent}>
+      <Image
+        source={require('../../../assets/images/nodata.jpg')}
+        style={styles.noDataImg}
+      />
     </View>
   );
 };
@@ -100,7 +118,8 @@ const Home = () => {
   }, [status, trendingStatus, dispatch]);
 
   const onEndReached = () => {
-    if (page <= 2 && trendingStatus !== 'loading') {
+    //limiting scroll to 4 pages
+    if (page <= 4 && trendingStatus !== 'loading') {
       setLoading(true);
       dispatch(fetchTrendingMovies(page));
     } else {
@@ -109,7 +128,7 @@ const Home = () => {
   };
   return (
     <View style={styles.container}>
-      <View style={{flex: 1}}>
+      <View>
         <FlatList
           data={trendingMovies}
           keyExtractor={item => item.id.toString()}
@@ -134,6 +153,7 @@ const Home = () => {
               <LoadingFooter loading={loading} />
             </>
           }
+          ListEmptyComponent={!loadingTrendingMovie && NoDataComponent}
         />
       </View>
     </View>

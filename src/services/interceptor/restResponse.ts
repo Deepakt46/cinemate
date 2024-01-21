@@ -11,7 +11,10 @@ export const interceptor = () => {
         // The request was made and the server responded with a status code
         notifiError(
           'Response error',
-          `${error?.response?.data.status_message}`,
+          `${
+            (error.response?.data as {status_message?: string})
+              ?.status_message ?? 'Unknown error'
+          }`,
         );
         console.error(
           'Response error:',

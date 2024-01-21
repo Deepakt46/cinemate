@@ -6,7 +6,7 @@ const useStyles = () => {
   const {height, width} = useWindowDimensions();
   return StyleSheet.create({
     card: {
-      height: height / 5,
+      height: height / 3.5,
       width: (width - 60) / 2,
       borderRadius: 20,
       resizeMode: 'cover',
@@ -21,8 +21,9 @@ const useStyles = () => {
       fontFamily: FontFamily.MEDIUM,
       fontSize: 16,
       color: Colors.text,
-      marginVertical: 5,
+      marginVertical: 7,
       textAlign: 'center',
+      paddingHorizontal: 15,
     },
   });
 };

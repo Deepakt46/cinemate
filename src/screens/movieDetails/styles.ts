@@ -1,7 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, useWindowDimensions} from 'react-native';
 import {FontFamily, Colors} from '../../common/common';
 
 const useStyles = () => {
+  const {height, width} = useWindowDimensions();
   return StyleSheet.create({
     container: {
       flex: 1,
@@ -15,14 +16,14 @@ const useStyles = () => {
     titleText: {
       fontFamily: FontFamily.BOLD,
       fontSize: 35,
-      marginBottom: 10,
+      marginBottom: 8,
       textAlign: 'center',
       color: '#000',
     },
     dateText: {
       fontFamily: FontFamily.MEDIUM,
-      fontSize: 18,
-      color: Colors.primary,
+      fontSize: 16,
+      color: '#717171',
       marginBottom: 5,
       textAlign: 'center',
     },
@@ -36,13 +37,13 @@ const useStyles = () => {
     duration: {
       fontSize: 16,
       fontFamily: FontFamily.MEDIUM,
-      marginBottom: 10,
+      marginBottom: 20,
       textAlign: 'center',
-      color: '#000',
+      color: '#717171',
     },
     overView: {
       fontFamily: FontFamily.BOLD,
-      fontSize: 20,
+      fontSize: 18,
       marginBottom: 10,
       textAlign: 'center',
       color: '#000',
@@ -62,6 +63,22 @@ const useStyles = () => {
       height: 40,
       width: 40,
       tintColor: '#fff',
+    },
+    noData: {
+      height: height / 2,
+      width: width - 40,
+    },
+    noDataWrapper: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    rating: {
+      fontSize: 16,
+      fontFamily: FontFamily.NORMAL,
+      textAlign: 'center',
+      color: Colors.primary,
+      marginBottom: 8,
     },
   });
 };

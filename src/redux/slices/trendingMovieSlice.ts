@@ -2,9 +2,20 @@ import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {getTrendingMovies} from '../../services/providers/trending';
 
 interface Movie {
+  adult: boolean;
+  backdrop_path: string;
+  genre_ids: number[];
   id: number;
+  original_language: string;
+  original_title: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  release_date: string;
   title: string;
-  // Add more properties based on your needs
+  video: boolean;
+  vote_average: number;
+  vote_count: number;
 }
 
 interface MoviesState {
@@ -21,11 +32,15 @@ const initialState: MoviesState = {
   page: 1,
 };
 
+interface MovieResponse {
+  results: Movie[];
+}
+
 export const fetchTrendingMovies = createAsyncThunk(
   'movies/fetchTrendingMovies',
   async (page: number) => {
     const response = await getTrendingMovies(page);
-    return response.results as Movie[];
+    return response.results as MovieResponse;
   },
 );
 

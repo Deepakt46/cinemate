@@ -26,7 +26,7 @@ const MovieCard = ({item, loading}: {item: MovieDetails; loading: boolean}) => {
                 : require('../../../../assets/images/no-poster.jpg')
             }
           />
-          <Text style={styles.title}>{item.title}</Text>
+          <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
         </TouchableOpacity>
       )}
     </>

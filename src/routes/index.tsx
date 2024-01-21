@@ -1,21 +1,23 @@
 import * as React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
+
 import MovieDetails from '../screens/movieDetails';
 import MyTabs from './tabs/bottomTab';
 import {Image, StatusBar, Text, TouchableOpacity} from 'react-native';
 import useStyles from './styles';
-import {useNavigation} from '@react-navigation/native';
 import Search from '../screens/search';
 
 const Stack = createNativeStackNavigator();
 
+//custom header
 const Header = () => {
   const styles = useStyles();
   const navigation = useNavigation<any>();
   return (
     <SafeAreaView edges={['top']} style={styles.header}>
-      <Text style={styles.headerText}>Movies</Text>
+      <Text style={styles.headerText}>CineMate</Text>
       <TouchableOpacity onPress={() => navigation.navigate('search')}>
         <Image
           source={require('../../assets/icons/search.png')}

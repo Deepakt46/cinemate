@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import {View, TextInput, Image, TouchableOpacity, FlatList} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import React, {useCallback, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
+
 import useStyles from './styles';
 import {useNavigation} from '@react-navigation/native';
 import {debounce} from 'lodash';
@@ -19,9 +20,14 @@ const Search = () => {
     (state: RootState) => state.searchMovie,
   );
 
+  useEffect(() => {
+    //showing a default search of starwars
+    dispatch(searchMovies({page: page, search: 'harry potter'}) as any);
+  }, []);
+
   const handleSearch = useCallback((val: string) => {
     if (status !== 'loading') {
-      dispatch(searchMovies({page: page, search: val}) as any);
+      dispatch(searchMovies({page: page, search: val || 'harry potter'}) as any);
     } else if (val.length === 0) {
       dispatch(emptySearch());
       setLoading(false);
@@ -30,7 +36,7 @@ const Search = () => {
     }
   }, []);
 
-  const handleDelay = handleSearch;
+  const debouncedHandleSearch = debounce(handleSearch, 300); // Adjust the debounce delay as needed
 
   return (
     <SafeAreaView style={styles.container}>
@@ -45,19 +51,12 @@ const Search = () => {
             style={styles.backIcon}
           />
         </TouchableOpacity>
-        <View style={styles.searchBox}>
-          <TextInput
-            placeholder="Search"
-            placeholderTextColor={'gray'}
-            onChangeText={handleDelay}
-          />
-          <TouchableOpacity>
-            <Image
-              source={require('../../../assets/icons/cancel.png')}
-              style={styles.icon}
-            />
-          </TouchableOpacity>
-        </View>
+        <TextInput
+          style={styles.searchBox}
+          placeholder="Search eg: Harry Potter"
+          placeholderTextColor={'#999'}
+          onChangeText={debouncedHandleSearch}
+        />
       </View>
       <FlatList
         data={movies}
