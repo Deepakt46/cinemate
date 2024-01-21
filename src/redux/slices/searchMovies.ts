@@ -1,11 +1,7 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {searchMovie} from '../../services/providers/searchMovies';
+import Movie from '../../types';
 
-interface Movie {
-  id: number;
-  title: string;
-  // Add more properties based on your needs
-}
 interface SearchParams {
   page: number;
   search: string;

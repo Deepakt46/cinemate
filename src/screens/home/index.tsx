@@ -13,29 +13,14 @@ import MovieCardSkeleton from '../../common/components/skeleton/skeletonHomeScre
 import LoadingFooter from '../../common/components/loader/footerLoader';
 import TrendingMovieCardSkeleton from '../../common/components/skeleton/skeletonTrending';
 import {RootState} from '../../redux/store';
-
-interface Movie {
-  adult: boolean;
-  backdrop_path: string;
-  genre_ids: number[];
-  id: number;
-  original_language: string;
-  original_title: string;
-  overview: string;
-  popularity: number;
-  poster_path: string;
-  release_date: string;
-  title: string;
-  video: boolean;
-  vote_average: number;
-  vote_count: number;
-}
+import {UnknownAction} from '@reduxjs/toolkit';
+import Movie from '../../types';
 
 const UpcomingMovieComponent = ({
   movies,
   loading,
 }: {
-  movies: Movie;
+  movies: Movie[];
   loading: boolean;
 }) => {
   const styles = useStyles();
@@ -58,6 +43,9 @@ const UpcomingMovieComponent = ({
             inactiveSlideOpacity={0.5}
             enableMomentum={true}
             decelerationRate={0.9}
+            autoplay
+            autoplayInterval={7000}
+            loop
           />
         </>
       ) : (
@@ -103,7 +91,7 @@ const Home = () => {
   useEffect(() => {
     if (status === 'idle') {
       setLoadingUpcomingMovie(true);
-      dispatch(fetchMovies());
+      dispatch(fetchMovies() as unknown as UnknownAction);
     } else if (status === 'succeeded') {
       setLoadingUpcomingMovie(false);
     }
@@ -111,7 +99,7 @@ const Home = () => {
     // Assuming you want to fetch trending movies as well
     if (trendingStatus === 'idle') {
       setLoadingTrendingMovie(true);
-      dispatch(fetchTrendingMovies(page));
+      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction);
     } else if (trendingStatus === 'succeeded') {
       setLoadingTrendingMovie(false);
     }
@@ -121,7 +109,7 @@ const Home = () => {
     //limiting scroll to 4 pages
     if (page <= 4 && trendingStatus !== 'loading') {
       setLoading(true);
-      dispatch(fetchTrendingMovies(page));
+      dispatch(fetchTrendingMovies(page) as unknown as UnknownAction);
     } else {
       setLoading(false);
     }
@@ -142,7 +130,7 @@ const Home = () => {
           }
           onEndReached={onEndReached} // function to handle the pagination
           renderItem={({item}) => (
-            <MovieCard item={item} loading={loadingTrendingMovie} />
+            <MovieCard item={item as Movie} loading={loadingTrendingMovie} />
           )}
           ListFooterComponent={
             // Show a loading indicator at the end of the list
@@ -153,7 +141,7 @@ const Home = () => {
               <LoadingFooter loading={loading} />
             </>
           }
-          ListEmptyComponent={!loadingTrendingMovie && NoDataComponent}
+          ListEmptyComponent={!loadingTrendingMovie ? NoDataComponent : <></>}
         />
       </View>
     </View>

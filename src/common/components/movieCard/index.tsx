@@ -2,11 +2,11 @@ import {TouchableOpacity, Image, Text} from 'react-native';
 import React from 'react';
 import useStyle from './style';
 import {moviePoster} from '../../../services/providers/poster';
-import MovieDetails from '../../../types';
+import Movie from '../../../types';
 import TrendingMovieCardSkeleton from '../skeleton/skeletonTrending';
 import {useNavigation} from '@react-navigation/native';
 
-const MovieCard = ({item, loading}: {item: MovieDetails; loading: boolean}) => {
+const MovieCard = ({item, loading}: {item: Movie; loading: boolean}) => {
   const styles = useStyle();
   const navigation = useNavigation<any>();
 
@@ -26,7 +26,9 @@ const MovieCard = ({item, loading}: {item: MovieDetails; loading: boolean}) => {
                 : require('../../../../assets/images/no-poster.jpg')
             }
           />
-          <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
+          <Text style={styles.title} numberOfLines={1}>
+            {item.title}
+          </Text>
         </TouchableOpacity>
       )}
     </>

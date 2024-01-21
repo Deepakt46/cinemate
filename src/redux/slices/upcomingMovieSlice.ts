@@ -1,11 +1,6 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import {getUpcomingMovies} from '../../services/providers/upcoming';
-
-interface Movie {
-  id: number;
-  title: string;
-  // Add more properties based on your needs
-}
+import Movie from '../../types';
 
 interface MoviesState {
   movies: Movie[];

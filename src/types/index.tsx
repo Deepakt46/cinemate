@@ -21,7 +21,7 @@ interface SpokenLanguage {
   name: string;
 }
 
-interface MovieDetails {
+interface Movie {
   adult: boolean;
   backdrop_path: string;
   belongs_to_collection: null | any; // You can replace 'any' with the specific type if available
@@ -49,4 +49,4 @@ interface MovieDetails {
   vote_count: number;
 }
 
-export default MovieDetails;
+export default Movie;
