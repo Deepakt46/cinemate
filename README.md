@@ -1,4 +1,4 @@
-# Movie Listing React Native App
+# CineMate
 
 This React Native application is designed to provide users with a seamless experience for exploring and discovering information about movies. The app utilizes data from The Movie Database (TMDb) API to offer a rich and up-to-date collection of movie details.
 
@@ -42,7 +42,6 @@ Before you begin, ensure you have the following:
    npx react-native run-android
 
 
-# My React Native Movie App -CineMate
 
 
 ## Component Architecture
