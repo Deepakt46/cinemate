@@ -41,6 +41,47 @@ Before you begin, ensure you have the following:
     ```bash
    npx react-native run-android
 
+
+# My React Native Movie App -CineMate
+
+
+## Component Architecture
+
+### Component 1: Splash Screen
+- *Description*: Displays a small animation while the app is launching.
+- *Purpose*: To give users a visually appealing introduction to the app.
+
+### Component 2: Carousel for Upcoming Movies
+- *Description*: A carousel component that showcases upcoming movies.
+- *Data Source*: TMDB API endpoint /movie/upcoming.
+- *Functionality*: Allows users to swipe through a series of upcoming movie posters.
+
+### Component 3: FlatList for Trending Movies
+- *Description*: A FlatList component displaying a list of trending movies.
+- *Data Source*: TMDB API endpoint /trending/movie/day.
+- *Functionality*: Presents a scrollable list of trending movies, offering an overview of popular titles.
+
+## TMDB API Endpoints
+
+1. *Upcoming Movies Endpoint*
+   - Endpoint: /movie/upcoming
+   - Usage: Fetches data about movies that are scheduled to be released soon.
+
+2. *Trending Movies Endpoint*
+   - Endpoint: /trending/movie/day
+   - Usage: Retrieves a list of movies trending on a daily basis.
+
+3. *Movie Search Endpoint*
+   - Endpoint: /search/movie
+   - Usage: Allows users to search for movies based on a query.
+
+4. *Movie Details Endpoint*
+   - Endpoint: /movie/${id}
+   - Usage: Provides detailed information about a movie, based on the movie's ID.
+
+
+
+
 # Design Explanations
 
 ## Movie Listings with React Native Snap Carousel, FlatList,Stack Navigation and Bottom Tab Navigation
@@ -85,6 +126,7 @@ The movie listing feature integrates multiple components to provide a dynamic an
 ### **Overall User Experience**
 
 The combined use of `react-native-snap-carousel`, `FlatList`, and a bottom tab navigation bar creates a holistic and user-centric movie listing experience. Users can intuitively navigate, explore, and engage with upcoming and trending movies seamlessly on both Android and iOS devices.
+
 
 
 
