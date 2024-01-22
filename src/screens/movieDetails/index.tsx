@@ -5,6 +5,7 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 
@@ -76,18 +77,22 @@ const MovieDetail: React.FC<MovieDetailsProps> = ({route, navigation}) => {
             />
           </TouchableOpacity>
           <View style={styles.description}>
-            <Text style={styles.titleText}>{details?.title}</Text>
-            <Text style={styles.rating}>
-              Rating: {(details?.vote_average).toFixed(1)}
-            </Text>
-            <Text style={styles.dateText}>
-              Release Date: {details?.release_date}
-            </Text>
-            <Text style={styles.duration}>
-              Duration: {details?.runtime} mins
-            </Text>
-            <Text style={styles.overView}>Overview</Text>
-            <Text style={styles.review}>{details?.overview}</Text>
+            <ScrollView
+              contentContainerStyle={styles.scrollViewWrap}
+              showsVerticalScrollIndicator={false}>
+              <Text style={styles.titleText}>{details?.title}</Text>
+              <Text style={styles.rating}>
+                Rating: {(details?.vote_average).toFixed(1)}
+              </Text>
+              <Text style={styles.dateText}>
+                Release Date: {details?.release_date}
+              </Text>
+              <Text style={styles.duration}>
+                Duration: {details?.runtime} mins
+              </Text>
+              <Text style={styles.overView}>Overview</Text>
+              <Text style={styles.review}>{details?.overview}</Text>
+            </ScrollView>
           </View>
         </ImageBackground>
       )}

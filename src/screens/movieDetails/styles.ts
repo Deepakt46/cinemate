@@ -32,7 +32,10 @@ const useStyles = () => {
       backgroundColor: '#fff',
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
+    },
+    scrollViewWrap: {
       padding: 20,
+      paddingBottom: 30,
     },
     duration: {
       fontSize: 16,
